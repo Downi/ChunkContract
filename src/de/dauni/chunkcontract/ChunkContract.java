@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.dauni.chunkcontract.PermissionsC.Permissions;
+import de.dauni.chunkcontract.Commands.CMDcomment;
 import de.dauni.chunkcontract.Commands.CMDnotfound;
 import de.dauni.chunkcontract.Commands.CMDcreate;
 import de.dauni.chunkcontract.Commands.CMDset;
@@ -24,21 +25,11 @@ import de.dauni.chunkcontract.Managers.PermissionsM;
 import de.dauni.chunkcontract.ContractHandler;
 import de.dauni.chunkcontract.Contract;
 
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.Sound;
-import org.bukkit.block.Block;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
-import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -60,6 +51,7 @@ public class ChunkContract extends JavaPlugin implements Listener {
 			add("report");
 			add("list");
 			add("view");
+			add("comment");
 			add("info");
 			add("help");
 		}
@@ -78,6 +70,7 @@ public class ChunkContract extends JavaPlugin implements Listener {
 	public static CommandM CMDview;
 	public static CommandM CMDinfo;
 	public static CommandM CMDhelp;
+	public static CommandM CMDcomment;
 
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(this, this);
@@ -142,7 +135,11 @@ public class ChunkContract extends JavaPlugin implements Listener {
 				(Boolean) W.config.get(ConfigC.commandEnabled_view),
 				ChunkContractCMD, new CMDview(),
 				"/contract <view|v> <id>");
-		
+		CMDcomment = new CommandM("Contract COMMENT", "contract", "comment", "c",
+				Permissions.comment, ConfigC.help_comment,
+				(Boolean) W.config.get(ConfigC.commandEnabled_comment),
+				ChunkContractCMD, new CMDcomment(),
+				"/contract <comment|c> <id>");
 		
 		CMDinfo = new CommandM("Contract INFO", "contract", "info", "i",
 				Permissions.info, ConfigC.help_info,

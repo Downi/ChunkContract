@@ -1,6 +1,7 @@
 package de.dauni.chunkcontract.Commands;
 
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import de.dauni.chunkcontract.ConfigC;
@@ -16,7 +17,7 @@ public class CMDcreate extends DefaultCMD {
 	public boolean exectue(Player player, Command cmd, String label, String[] args) {
 		if (player != null) {
 			Integer id = W.contractList.size()+1;
-			Contract contract = new Contract(id, new Date(), player.getName(), "", null, "", "BYTES", "", false, null, null, null, null, null, 0, false, false, 1, "");	
+			Contract contract = new Contract(id, new Date(), player.getName(), "", null, "", "BYTES", "", false, null, null, null, null, null, 0, false, false, 1, "", new ArrayList<String>());	
 			W.contracts.getFile().set(String.valueOf(id)+".contract", contract);
 			W.contracts.save();
 			W.contractList.add(contract);

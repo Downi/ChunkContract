@@ -52,6 +52,7 @@ public class CMDview extends DefaultCMD {
 								MessageM.sendMessage(player, "&9[Contract]&5|&aStatus: &eCreated");
 							}
 							MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e"+contract.due);
+							MessageM.sendMessage(player, "&9[Contract]&5|&aInsurance: &e"+contract.insurance);
 							if(contract.type != 3) {
 								MessageM.sendMessage(player, "&9[Contract]&5|&aReward: &e"+contract.reward+"&a(&e"+contract.reward_type+"&a)");
 							}
@@ -66,8 +67,15 @@ public class CMDview extends DefaultCMD {
 							}
 							} catch(Exception eq) {
 							}
-							MessageM.sendMessage(player, "&9[Contract]&5|&aInsurance: &e"+contract.insurance);
 							MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
+							if(contract.comments.size() > 0) {
+
+								MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
+								for(String comment : contract.comments){
+									MessageM.sendMessage(player, "&9[Contract]&5|&e"+comment);
+								}
+								MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
+							}
 							if(contract.status == 2) {
 								MessageM.sendMessage(player, "&9[Contract]&5|&aCanceled: &e"+contract.closed_at);
 								MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");

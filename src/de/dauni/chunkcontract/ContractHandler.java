@@ -126,6 +126,14 @@ public class ContractHandler {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aReward: &e"+contract.reward+"&a(&e"+contract.reward_type+"&a)");
 		}
 		MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
+		if(contract.comments.size() > 0) {
+
+			MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
+			for(String comment : contract.comments){
+				MessageM.sendMessage(player, "&9[Contract]&5|&e"+comment);
+			}
+			MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
+		}
 		MessageM.sendMessage(player, "&9[Contract]&2If you really want to sign this Conctract, write ");
 		MessageM.sendMessage(player, "&9[Contract]&2/contract sign "+contract.id+" approve");
 		contract.waitingforapproval = true;
@@ -154,6 +162,14 @@ public class ContractHandler {
 				MessageM.sendMessage(partner, "&9[Contract]&5|&aReward: &e"+contract.reward+"&a(&e"+contract.reward_type+"&a)");
 			}
 			MessageM.sendMessage(partner, "&9[Contract]&5+---------------------------------------------------+");
+			if(contract.comments.size() > 0) {
+
+				MessageM.sendMessage(partner, "&9[Contract]&5+---------------------------------------------------+");
+				for(String comment : contract.comments){
+					MessageM.sendMessage(partner, "&9[Contract]&5|&e"+comment);
+				}
+				MessageM.sendMessage(partner, "&9[Contract]&5+---------------------------------------------------+");
+			}
 			MessageM.sendMessage(partner, "&9[Contract]&2If you really want to sign this Conctract, write ");
 			MessageM.sendMessage(partner, "&9[Contract]&2/contract approve "+contract.id);
 			contract.sended_at = new Date();
@@ -186,6 +202,12 @@ public class ContractHandler {
 	public static void setClose(Contract contract) {
 		contract.status = 3;
 		contract.closed_at = new Date();
+		W.contracts.getFile().set(contract.id+".contract", contract);
+		W.contracts.save();
+		
+	}
+	public static void addComment(Contract contract, String comment) {
+		contract.comments.add(comment);
 		W.contracts.getFile().set(contract.id+".contract", contract);
 		W.contracts.save();
 		

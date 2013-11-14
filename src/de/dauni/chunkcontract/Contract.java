@@ -1,5 +1,6 @@
 package de.dauni.chunkcontract;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -8,6 +9,7 @@ import de.dauni.chunkcontract.Serializables.M;
 
 import org.bukkit.configuration.serialization.ConfigurationSerializable;
 import org.bukkit.configuration.serialization.SerializableAs;
+import org.bukkit.entity.Player;
 
 @SerializableAs("ContractItem")
 public class Contract implements ConfigurationSerializable {
@@ -30,9 +32,10 @@ public class Contract implements ConfigurationSerializable {
 	public Boolean reported;
 	public Integer type;
 	public String insurance;
+	public ArrayList<String> comments;
 
 	public Contract (Integer id, Date created, String owner, String subject, Date due, String reward, String reward_type, String partner, Boolean waitingforapproval,
-			Date sended_at, Boolean partner_status, Date partner_status_at, Date report_at, Date closed_at, Integer status, Boolean closed, Boolean reported, Integer type, String insurance) {
+			Date sended_at, Boolean partner_status, Date partner_status_at, Date report_at, Date closed_at, Integer status, Boolean closed, Boolean reported, Integer type, String insurance, ArrayList<String> comments) {
 		this.id = id;
 		this.created = created;
 		this.owner = owner;
@@ -52,6 +55,7 @@ public class Contract implements ConfigurationSerializable {
 		this.reported = reported;
 		this.type = type;
 		this.insurance = insurance;
+		this.comments = comments;
 	}
 
 	@Override
@@ -77,9 +81,11 @@ public class Contract implements ConfigurationSerializable {
 		map.put("closed", closed);
 		map.put("type", type);
 		map.put("insurance", insurance);
+		map.put("comments", comments);
 		return map;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static Contract deserialize(Map<String, Object> map) {
 		return new Contract((Integer) M.g(map, "id", 0), 
 				(Date) M.g(map, "created", new Date()), 
@@ -99,6 +105,7 @@ public class Contract implements ConfigurationSerializable {
 				(Boolean) M.g(map, "closed", false),
 				(Boolean) M.g(map, "reported", false),
 				(Integer) M.g(map, "type", 0),
-				(String) M.g(map, "insurance", 0));
+				(String) M.g(map, "insurance", 0), 
+				new ArrayList<String>());
 	}
 }

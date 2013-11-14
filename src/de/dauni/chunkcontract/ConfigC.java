@@ -24,6 +24,8 @@ public enum ConfigC {
 	commandEnabled_done (true, W.config),
 	commandEnabled_cancel (true, W.config),
 	commandEnabled_view (true, W.config),
+	commandEnabled_comment (true, W.config),
+	
 	
 	
 	help_info ("%NDisplays the plugin's info.", W.messages),
@@ -39,6 +41,7 @@ public enum ConfigC {
 	help_done ("%NMark a Contract as Done. Reward will given.", W.messages),
 	help_cancel ("%NCancels a Contract.", W.messages),
 	help_view ("%NViews a Contract", W.messages),
+	help_comment ("%NAdds Comments to the Contract", W.messages),
 	
 	log_disabledPlugin ("%TAG%N%name%&c&k - %N%version% is now Disabled. Made by %A%autors%%N.",
 			W.messages),
@@ -70,8 +73,9 @@ public enum ConfigC {
 			W.messages),
 	error_itemNotInInventory ("%TAG%EYou do not have &e%item% %Ein your Inventory.",
 			W.messages),
-			
-	normal_contractadded ("%TAG%NConctract %id% created.", W.messages),
+
+			normal_contractadded ("%TAG%NConctract %id% created.", W.messages),
+			normal_commandadded ("%TAG%NComment added.", W.messages),
 	normal_settingsaved ("%TAG%NOption %H%option%%N set to %H%setto%%N.", W.messages),;
 	
 	public Object value;

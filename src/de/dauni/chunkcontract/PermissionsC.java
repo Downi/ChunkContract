@@ -23,6 +23,7 @@ public class PermissionsC {
 		cancel ("cancel", PType.ALL),
 		done ("done", PType.ALL),
 		view ("view", PType.ALL),
+		comment ("comment", PType.ALL),
 		view_all ("viewall", PType.MODERATOR),
 		allcommands ("allcommands", PType.ADMIN);
 
