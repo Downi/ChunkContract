@@ -1,0 +1,12 @@
+name: Contract
+main: de.dauni.chunkcontract.ChunkContract
+version: 0.0.1_DEV
+authors:
+  - Daunilein
+description: Simple Contract Plugin for Chunkbyte.com
+softdepend: [Essentials, PetitionPlugin]
+load: POSTWORLD
+commands:
+  contract:
+    usage: /<command>
+    description: N/A
