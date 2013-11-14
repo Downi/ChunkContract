@@ -24,7 +24,7 @@ public class CMDset extends DefaultCMD {
 	public boolean exectue(Player player, Command cmd, String label, String[] args) {
 		if (player != null) {
 			if (args.length >= 4) {
-					if(args[2].equalsIgnoreCase("subject") == true || args[2].equalsIgnoreCase("type") == true || args[2].equalsIgnoreCase("due") == true || args[2].equalsIgnoreCase("reward") == true || args[2].equalsIgnoreCase("partner") == true) {
+					if(args[2].equalsIgnoreCase("insurance") == true || args[2].equalsIgnoreCase("subject") == true || args[2].equalsIgnoreCase("type") == true || args[2].equalsIgnoreCase("due") == true || args[2].equalsIgnoreCase("reward") == true || args[2].equalsIgnoreCase("partner") == true) {
 						if(W.contracts.getFile().get(args[1]+".contract") != null) {
 							Contract contract = (Contract) W.contracts.getFile().get(args[1]+".contract");
 							String message = "";

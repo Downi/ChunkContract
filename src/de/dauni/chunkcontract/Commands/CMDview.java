@@ -66,6 +66,7 @@ public class CMDview extends DefaultCMD {
 							}
 							} catch(Exception eq) {
 							}
+							MessageM.sendMessage(player, "&9[Contract]&5|&aInsurance: &e"+contract.insurance);
 							MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
 							if(contract.status == 2) {
 								MessageM.sendMessage(player, "&9[Contract]&5|&aCanceled: &e"+contract.closed_at);

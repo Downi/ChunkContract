@@ -45,6 +45,8 @@ public class ContractHandler {
 			contract.reward = val;
 		} else if(fld.contains("partner") == true) {
 			contract.partner = val;
+		} else if(fld.contains("insurance") == true) {
+			contract.insurance = val;
 		} else if(fld.contains("type") == true && (Integer.parseInt(val) == 1 || Integer.parseInt(val) == 2 || Integer.parseInt(val) == 3)) {
 			contract.type = Integer.parseInt(val);
 		} else if(fld.contains("due") == true) {
@@ -91,6 +93,11 @@ public class ContractHandler {
 					+ "type");
 			return;
 		}
+		if(contract.insurance == "") {
+			MessageM.sendFMessage(player, ConfigC.error_settingnotset, "opt-"
+					+ "insurance");
+			return;
+		}
 		if(contract.reward == null && contract.type != 3) {
 			MessageM.sendFMessage(player, ConfigC.error_settingnotset, "opt-"
 					+ "reward");
@@ -111,7 +118,9 @@ public class ContractHandler {
 		} else if(contract.type == 3) {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aType: &ePromise");
 		}
+
 		MessageM.sendMessage(player, "&9[Contract]&5|&aPartner: &e"+contract.partner);
+		MessageM.sendMessage(player, "&9[Contract]&5|&aInsurance: &e"+contract.insurance);
 		MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e"+contract.due);
 		if(contract.type != 3) {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aReward: &e"+contract.reward+"&a(&e"+contract.reward_type+"&a)");
@@ -139,6 +148,7 @@ public class ContractHandler {
 				MessageM.sendMessage(partner, "&9[Contract]&5|&aType: &ePromise");
 			}
 			MessageM.sendMessage(partner, "&9[Contract]&5|&aPartner: &e"+contract.owner);
+			MessageM.sendMessage(partner, "&9[Contract]&5|&aInsurance: &e"+contract.insurance);
 			MessageM.sendMessage(partner, "&9[Contract]&5|&aDue to: &e"+contract.due);
 			if(contract.type != 3) {
 				MessageM.sendMessage(partner, "&9[Contract]&5|&aReward: &e"+contract.reward+"&a(&e"+contract.reward_type+"&a)");

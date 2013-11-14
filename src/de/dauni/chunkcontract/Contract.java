@@ -29,9 +29,10 @@ public class Contract implements ConfigurationSerializable {
 	public Boolean closed;
 	public Boolean reported;
 	public Integer type;
+	public String insurance;
 
 	public Contract (Integer id, Date created, String owner, String subject, Date due, String reward, String reward_type, String partner, Boolean waitingforapproval,
-			Date sended_at, Boolean partner_status, Date partner_status_at, Date report_at, Date closed_at, Integer status, Boolean closed, Boolean reported, Integer type) {
+			Date sended_at, Boolean partner_status, Date partner_status_at, Date report_at, Date closed_at, Integer status, Boolean closed, Boolean reported, Integer type, String insurance) {
 		this.id = id;
 		this.created = created;
 		this.owner = owner;
@@ -50,6 +51,7 @@ public class Contract implements ConfigurationSerializable {
 		this.closed = closed;
 		this.reported = reported;
 		this.type = type;
+		this.insurance = insurance;
 	}
 
 	@Override
@@ -74,6 +76,7 @@ public class Contract implements ConfigurationSerializable {
 		map.put("reported", reported);
 		map.put("closed", closed);
 		map.put("type", type);
+		map.put("insurance", insurance);
 		return map;
 	}
 
@@ -95,6 +98,7 @@ public class Contract implements ConfigurationSerializable {
 				(Integer) M.g(map, "status", 0),
 				(Boolean) M.g(map, "closed", false),
 				(Boolean) M.g(map, "reported", false),
-				(Integer) M.g(map, "type", 0));
+				(Integer) M.g(map, "type", 0),
+				(String) M.g(map, "insurance", 0));
 	}
 }

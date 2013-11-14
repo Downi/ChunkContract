@@ -16,7 +16,7 @@ public class CMDcreate extends DefaultCMD {
 	public boolean exectue(Player player, Command cmd, String label, String[] args) {
 		if (player != null) {
 			Integer id = W.contractList.size()+1;
-			Contract contract = new Contract(id, new Date(), player.getName(), "", null, "", "BYTES", "", false, null, null, null, null, null, 0, false, false, 1);	
+			Contract contract = new Contract(id, new Date(), player.getName(), "", null, "", "BYTES", "", false, null, null, null, null, null, 0, false, false, 1, "");	
 			W.contracts.getFile().set(String.valueOf(id)+".contract", contract);
 			W.contracts.save();
 			W.contractList.add(contract);
@@ -28,6 +28,7 @@ public class CMDcreate extends DefaultCMD {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aType(Service): &e /contract set "+contract.id+" type 1");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aType(Borrowing): &e /contract set "+contract.id+" type 2");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aType(Promise): &e /contract set "+contract.id+" type 3");
+			MessageM.sendMessage(player, "&9[Contract]&5|&aInsurance: &e /contract set "+contract.id+" insurance <value>");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aReward(Bytes): &e /contract set "+contract.id+" reward b:<amount> ");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aReward(Item): &e /contract set "+contract.id+" reward i:<itemid> ");
 			MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
