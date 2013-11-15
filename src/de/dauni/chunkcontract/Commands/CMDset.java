@@ -86,8 +86,13 @@ public class CMDset extends DefaultCMD {
 							} else if(args[3].equalsIgnoreCase("create")) {
 								ContractHandler.setCreate(contract);
 							} else {
-								
+								MessageM.sendFMessage(player,
+										ConfigC.error_notEnoughArguments);
+								return true;
 							}
+							MessageM.sendFMessage(player, ConfigC.normal_settingsaved, "option-"
+									+ "status",
+									"setto-" + args[3]);
 						} else {
 							MessageM.sendFMessage(player,
 									ConfigC.error_contractNotFound);

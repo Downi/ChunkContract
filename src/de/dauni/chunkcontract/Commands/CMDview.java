@@ -17,7 +17,7 @@ public class CMDview extends DefaultCMD {
 	public boolean exectue(Player player, Command cmd, String label,
 			String[] args) {
 		if (player != null) {
-			if (args.length >= 1) {
+			if (args.length > 1) {
 					if(W.contracts.getFile().get(args[1]+".contract") != null) {
 						Contract contract = (Contract) W.contracts.getFile().get(args[1]+".contract");
 						if(String.valueOf(contract.owner).equals(String.valueOf(player.getName())) || String.valueOf(contract.partner).equals(String.valueOf(player.getName())) || PermissionsM.hasPerm(player, Permissions.view_all, true)) {

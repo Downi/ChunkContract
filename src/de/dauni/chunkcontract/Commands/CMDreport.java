@@ -22,7 +22,7 @@ public class CMDreport extends DefaultCMD {
 			if (args.length >= 1) {
 					if(W.contracts.getFile().get(args[1]+".contract") != null) {
 						Contract contract = (Contract) W.contracts.getFile().get(args[1]+".contract");
-						if(String.valueOf(contract.partner).equals(String.valueOf(player.getName())) || String.valueOf(contract.owner).equals(String.valueOf(player.getName())) || PermissionsM.hasPerm(player, Permissions.allcommands, true)) {
+						if(String.valueOf(contract.partner).equals(String.valueOf(player.getName())) || String.valueOf(contract.owner).equals(String.valueOf(player.getName())) || PermissionsM.hasPerm(player, Permissions.allcommands, false)) {
 							if(contract.reported == false && (contract.status.equals(1) || contract.status.equals(2) || contract.status.equals(6) || contract.status.equals(7))) {
 								if(String.valueOf(contract.partner).equals(String.valueOf(player.getName()))) {
 									Bukkit.getServer().dispatchCommand(player, "pe open [Contract "+contract.id+"] Report by Partner "+contract.partner);
@@ -32,11 +32,9 @@ public class CMDreport extends DefaultCMD {
 								}
 								ContractHandler.setReported(contract);
 							} else {
-								MessageM.sendMessage(null, "11111");
 								MessageM.sendFMessage(player, ConfigC.error_noPermission);	
 							}
 						} else {
-							MessageM.sendMessage(null, "2222222");
 							MessageM.sendFMessage(player, ConfigC.error_noPermission);	
 						}
 					}

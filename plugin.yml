@@ -1,6 +1,6 @@
 name: Contract
 main: de.dauni.chunkcontract.ChunkContract
-version: 0.0.1_DEV
+version: 0.0.2
 authors:
   - Daunilein
 description: Simple Contract Plugin for Chunkbyte.com

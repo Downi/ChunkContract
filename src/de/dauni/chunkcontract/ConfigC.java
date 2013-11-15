@@ -51,7 +51,7 @@ public enum ConfigC {
 			W.messages),
 	error_onlyOwner ("%TAG%EOnly the Owner of the Contract can do this.",
 			W.messages),
-	error_notEnoughArguments ("%TAG%EYou're missing arguments, correct syntax: %A%syntax%",
+	error_notEnoughArguments ("%TAG%EYou're missing arguments! Check /contract help.",
 			W.messages),
 	error_contractNotFound ("%TAG%EContract not found.",
 			W.messages),
@@ -59,7 +59,7 @@ public enum ConfigC {
 			W.messages),
 					
 	error_onlyIngame ("%TAG%EThis is an only in-game command!", W.messages),
-	error_wrongdateformat ("%TAG%EWrong Date format! Use hh:mm dd/mm/yy.", W.messages),
+	error_wrongdateformat ("%TAG%EWrong Date format! Use hh:mm mm/dd/yy.", W.messages),
 	error_commandNotFound ("%TAG%ECouldn't find the command. Try %A/"
 			+ ChunkContract.pdfFile.getName() + " help %Efor more info.",
 			W.messages),
@@ -74,7 +74,7 @@ public enum ConfigC {
 	error_itemNotInInventory ("%TAG%EYou do not have &e%item% %Ein your Inventory.",
 			W.messages),
 
-			normal_contractadded ("%TAG%NConctract %id% created.", W.messages),
+			normal_contractadded ("%TAG%NContract %id% created.", W.messages),
 			normal_commandadded ("%TAG%NComment added.", W.messages),
 	normal_settingsaved ("%TAG%NOption %H%option%%N set to %H%setto%%N.", W.messages),;
 	
