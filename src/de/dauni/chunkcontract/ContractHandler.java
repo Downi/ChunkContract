@@ -123,27 +123,31 @@ public class ContractHandler {
 					+ "reward");
 			return;
 		}
-		MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
-		MessageM.sendMessage(player, "&9[Contract]&5|&aContract Information");
+		MessageM.sendMessage(player, "&9[Contract]&5+--------------&aContract "+contract.id+" Information--------------+");
+		
 		MessageM.sendMessage(player, "&9[Contract]&5|&aSubject: &e"+contract.subject);
-		if(contract.type == 1) {
+		if(contract.type.equals(1)) {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aType: &eService");
-		} else if(contract.type == 2) {
+		} else if(contract.type.equals(2)) {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aType: &eBorrowing");
-		} else if(contract.type == 3) {
+		} else if(contract.type.equals(3)) {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aType: &ePromise");
 		}
 
 		MessageM.sendMessage(player, "&9[Contract]&5|&aPartner: &e"+contract.partner);
 		MessageM.sendMessage(player, "&9[Contract]&5|&aInsurance: &e"+contract.insurance);
-		MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e"+contract.due);
+		if(contract.due != null) {
+		MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.due));
+		} else {
+			MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e");
+		}
 		if(contract.type != 3) {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aReward: &e"+contract.reward+"&a(&e"+contract.reward_type+"&a)");
 		}
 		MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
 		if(contract.comments.size() > 0) {
 
-			MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
+			MessageM.sendMessage(player, "&9[Contract]&5+---------------------Comments---------------------+");
 			for(String comment : contract.comments){
 				MessageM.sendMessage(player, "&9[Contract]&5|&e"+comment);
 			}
@@ -160,8 +164,7 @@ public class ContractHandler {
 		if(contract.sended_at == null) {
 		Player partner = Bukkit.getPlayer(contract.partner);
 		if(partner!=null) {
-			MessageM.sendMessage(partner, "&9[Contract]&5+---------------------------------------------------+");
-			MessageM.sendMessage(partner, "&9[Contract]&5|&aContract Information");
+			MessageM.sendMessage(partner, "&9[Contract]&5+--------------&aContract "+contract.id+" Information--------------+");
 			MessageM.sendMessage(partner, "&9[Contract]&5|&aSubject: &e"+contract.subject);
 			if(contract.type == 1) {
 				MessageM.sendMessage(partner, "&9[Contract]&5|&aType: &eService");
@@ -172,14 +175,18 @@ public class ContractHandler {
 			}
 			MessageM.sendMessage(partner, "&9[Contract]&5|&aPartner: &e"+contract.owner);
 			MessageM.sendMessage(partner, "&9[Contract]&5|&aInsurance: &e"+contract.insurance);
-			MessageM.sendMessage(partner, "&9[Contract]&5|&aDue to: &e"+contract.due);
+			if(contract.due != null) {
+				MessageM.sendMessage(partner, "&9[Contract]&5|&aDue to: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.due));
+			} else {
+				MessageM.sendMessage(partner, "&9[Contract]&5|&aDue to: &e");
+			}
 			if(contract.type != 3) {
 				MessageM.sendMessage(partner, "&9[Contract]&5|&aReward: &e"+contract.reward+"&a(&e"+contract.reward_type+"&a)");
 			}
 			MessageM.sendMessage(partner, "&9[Contract]&5+---------------------------------------------------+");
 			if(contract.comments.size() > 0) {
 
-				MessageM.sendMessage(partner, "&9[Contract]&5+---------------------------------------------------+");
+				MessageM.sendMessage(partner, "&9[Contract]&5+---------------------Comments---------------------+");
 				for(String comment : contract.comments){
 					MessageM.sendMessage(partner, "&9[Contract]&5|&e"+comment);
 				}
@@ -322,50 +329,51 @@ public class ContractHandler {
 	}
 	public static void list(String mode, Player player) {
 		if(mode == "own") {
+			MessageM.sendMessage(player, "&9[Contract]&e______Own Contracts______");
 			for(Contract contract : W.contractList) {
 				if(contract.owner.equals(player.getName()) || contract.partner.equals(player.getName())) {
 					if(contract.status.equals(1)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&2: "+contract.subject);
+						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&2[Active]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 					} else if(contract.status.equals(2)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&c: "+contract.subject);
+						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&c[Canceled]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 					} else if(contract.status.equals(3)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&7: "+contract.subject);
+						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&7[Done]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 					} else if(contract.status.equals(4)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&4: "+contract.subject);
+						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&4[Reported]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 					} else if(contract.status.equals(5)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&8: "+contract.subject);
+						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&8[Declined]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 					} else if(contract.status.equals(6)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&c: "+contract.subject);
+						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&c[RFO]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 					} else if(contract.status.equals(7)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&c: "+contract.subject);
+						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&c[RFP]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 					} else {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&e: "+contract.subject);
+						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&f[Created]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 					}
 				}
 			}
 		} else if(mode == "closed") {
+			MessageM.sendMessage(player, "&9[Contract]______Closed Contracts______");
 			for(Contract contract : W.contractList) {
 				if(contract.status.equals(2)) {
-					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&c: "+contract.subject);
+					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&c[Canceled]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 				} else if(contract.status.equals(3)) {
-					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&7: "+contract.subject);
+					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&7[Done]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 				} else if(contract.status.equals(5)) {
-					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&8: "+contract.subject);
+					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&8[Declined]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 				}
 				
 			}
 		} else {
+			MessageM.sendMessage(player, "&9[Contract]______Open Contracts______");
 			for(Contract contract : W.contractList) {
-				if(contract.owner.equals(player.getName()) || contract.partner.equals(player.getName())) {
-					if(contract.status.equals(1)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&2: "+contract.subject);
-					} else if(contract.status.equals(4)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&4: "+contract.subject);
-					} else if(contract.status.equals(6)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&c: "+contract.subject);
-					} else if(contract.status.equals(7)) {
-						MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&5&e"+contract.owner+" &a->&e "+contract.partner+"&c: "+contract.subject);
-					}
+				if(contract.status.equals(1)) {
+					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&2[Active]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
+				} else if(contract.status.equals(4)) {
+					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&4[Reported]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
+				} else if(contract.status.equals(6)) {
+					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&c[RFO]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
+				} else if(contract.status.equals(7)) {
+					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&c[RFP]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 				}
 			}
 		}

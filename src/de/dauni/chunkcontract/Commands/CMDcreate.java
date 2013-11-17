@@ -22,7 +22,7 @@ public class CMDcreate extends DefaultCMD {
 			W.contracts.save();
 			W.contractList.add(contract);
 			MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
-			MessageM.sendMessage(player, "&9[Contract]&5|&aContract Settings");
+			MessageM.sendMessage(player, "&9[Contract]&5|&aContract "+contract.id+" Settings");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aSubject: &e /contract set "+contract.id+" subject <value>");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aPartner: &e /contract set "+contract.id+" partner <value>");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aDue: &e /contract set "+contract.id+" due <hh:mm mm/dd/yyyy>");

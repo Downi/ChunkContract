@@ -28,8 +28,7 @@ public class CMDlist extends DefaultCMD {
 				} else if(args[1].equalsIgnoreCase("closed") == true && PermissionsM.hasPerm(player, Permissions.list_closed, false)) {
 					ContractHandler.list("closed", player);
 				} else {
-					MessageM.sendFMessage(player,
-							ConfigC.error_notEnoughArguments);
+					ContractHandler.list("own", player);
 				}
 				} catch(Exception e1) {
 					ContractHandler.list("own", player);
