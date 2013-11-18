@@ -328,7 +328,7 @@ public class ContractHandler {
 	    return new ItemStack(Material.getMaterial(matId));
 	}
 	public static void list(String mode, Player player) {
-		if(mode == "own") {  
+		if(mode == "own") {
 			MessageM.sendMessage(player, "&9[Contract]&e______Own Contracts______");
 			for(Contract contract : W.contractList) {
 				if(contract.owner.equals(player.getName()) || contract.partner.equals(player.getName())) {
