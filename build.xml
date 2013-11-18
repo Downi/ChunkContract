@@ -1,7 +1,7 @@
 <project name="ChunkContract" default="dist" basedir=".">
         <property name="pluginname" value="ChunkContract"/>
-    <property name="bukkit.jar" location="../deps/craftbukkit-1.5.2-R1.0.jar"/>
-    <property name="essentials.jar" location="../deps/Essentials.jar"/>
+    <property name="bukkit.jar" location="../../deps/craftbukkit-1.5.2-R1.0.jar"/>
+    <property name="essentials.jar" location="../../deps/Essentials.jar"/>
         <property name="plugins" location="../../plugins/"/>
 
         <property name="src" location="."/>
@@ -25,7 +25,7 @@
                 <mkdir dir="${dist}"/>
                 <jar jarfile="${dist}/${pluginname}.jar">
                         <fileset dir="${bin}"/>
-                        <fileset file="${src}/main/resources/plugin.yml"/>
+                        <fileset file="${src}/plugin.yml"/>
                 </jar>
         </target>
         
