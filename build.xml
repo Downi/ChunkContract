@@ -1,36 +1,40 @@
 <project name="ChunkContract" default="dist" basedir=".">
-    <description>
-    	ChunkContract
-    </description>
-  <!-- set global properties for this build -->
-  <property name="src" location="."/>
-  <property name="build" location="build"/>
-  <property name="dist"  location="dist"/>
+        <property name="pluginname" value="ChunkContract"/>
+    <property name="bukkit.jar" location="../deps/craftbukkit-1.5.2-R1.0.jar"/>
+    <property name="essentials.jar" location="../deps/Essentials.jar"/>
+        <property name="plugins" location="../../plugins/"/>
 
-  <target name="init">
-    <tstamp/>
-    <mkdir dir="${build}"/>
-  </target>
-
-  <target name="compile" depends="init"
-        description="compile the source " >
-    <!-- Compile the java code from ${src} into ${build} -->
-    <javac srcdir="${src}" destdir="${build}"/>
-  </target>
-
-  <target name="dist" depends="compile"
-        description="generate the distribution" >
-    <!-- Create the distribution directory -->
-    <mkdir dir="${dist}/lib"/>
-
-    <!-- Put everything in ${build} into the MyProject-${DSTAMP}.jar file -->
-    <jar jarfile="${dist}/lib/MyProject-${DSTAMP}.jar" basedir="${build}"/>
-  </target>
-
-  <target name="clean"
-        description="clean up" >
-    <!-- Delete the ${build} and ${dist} directory trees -->
-    <delete dir="${build}"/>
-    <delete dir="${dist}"/>
-  </target>
+        <property name="src" location="."/>
+        <property name="bin" location="bin"/>
+        <property name="dist" location="dist"/>
+        
+        <target name="init">
+                <mkdir dir="${bin}"/>
+        </target>
+        
+        <target name="compile" depends="init">
+                <javac srcdir="${src}/main/java" destdir="${bin}" includeantruntime="false">
+                        <classpath>
+                            <pathelement location="${bukkit.jar}"/>
+                            <pathelement location="${essentials.jar}"/>
+                        </classpath>
+                </javac>
+        </target>
+        
+        <target name="dist" depends="compile">
+                <mkdir dir="${dist}"/>
+                <jar jarfile="${dist}/${pluginname}.jar">
+                        <fileset dir="${bin}"/>
+                        <fileset file="${src}/main/resources/plugin.yml"/>
+                </jar>
+        </target>
+        
+        <target name="deploy" depends="dist">
+                <copy file="${dist}/${pluginname}.jar" todir="${plugins}"/>
+        </target>
+        
+        <target name="clean">
+                <delete dir="${bin}"/>
+                <delete dir="${dist}"/>
+        </target>
 </project>
