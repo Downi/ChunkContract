@@ -59,7 +59,7 @@ public enum ConfigC {
 			W.messages),
 					
 	error_onlyIngame ("%TAG%EThis is an only in-game command!", W.messages),
-	error_wrongdateformat ("%TAG%EWrong Date format! Use hh:mm mm/dd/yy.", W.messages),
+	error_wrongdateformat ("%TAG%EWrong Date format! Use HH:mm mm/dd/yy.", W.messages),
 	error_commandNotFound ("%TAG%ECouldn't find the command. Try %A/"
 			+ ChunkContract.pdfFile.getName() + " help %Efor more info.",
 			W.messages),

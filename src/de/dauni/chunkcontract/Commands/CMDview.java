@@ -54,7 +54,7 @@ public class CMDview extends DefaultCMD {
 								MessageM.sendMessage(player, "&9[Contract]&5|&aStatus: &eCreated");
 							}
 							if(contract.due != null) {
-							MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.due));
+							MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e"+new SimpleDateFormat("HH:mm MM/dd/yyyy").format(contract.due));
 							} else {
 								MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e");
 							}
@@ -63,7 +63,7 @@ public class CMDview extends DefaultCMD {
 								MessageM.sendMessage(player, "&9[Contract]&5|&aReward: &e"+contract.reward+"&a(&e"+contract.reward_type+"&a)");
 							}
 							if(contract.created != null) {
-								MessageM.sendMessage(player, "&9[Contract]&5|&aCreated: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.created));
+								MessageM.sendMessage(player, "&9[Contract]&5|&aCreated: &e"+new SimpleDateFormat("HH:mm MM/dd/yyyy").format(contract.created));
 							} else {
 								MessageM.sendMessage(player, "&9[Contract]&5|&aCreated: &e");
 							}
@@ -72,13 +72,13 @@ public class CMDview extends DefaultCMD {
 							try {
 							if(contract.partner_status == true) {
 								if(contract.due != null) {
-								MessageM.sendMessage(player, "&9[Contract]&5|&aPartner Accepted: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.partner_status_at));
+								MessageM.sendMessage(player, "&9[Contract]&5|&aPartner Accepted: &e"+new SimpleDateFormat("HH:mm MM/dd/yyyy").format(contract.partner_status_at));
 								} else {
 									MessageM.sendMessage(player, "&9[Contract]&5|&aPartner Accepted: &e");
 								}
 							} else if(contract.partner_status == false) {
 								if(contract.due != null) {
-									MessageM.sendMessage(player, "&9[Contract]&5|&aPartner Declined: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.partner_status_at));
+									MessageM.sendMessage(player, "&9[Contract]&5|&aPartner Declined: &e"+new SimpleDateFormat("HH:mm MM/dd/yyyy").format(contract.partner_status_at));
 								} else {
 									MessageM.sendMessage(player, "&9[Contract]&5|&aPartner Declined: &e");
 								}
@@ -97,7 +97,7 @@ public class CMDview extends DefaultCMD {
 							if(contract.status == 2) {
 								MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
 								if(contract.due != null) {
-								MessageM.sendMessage(player, "&9[Contract]&5|&aCanceled: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.closed_at));
+								MessageM.sendMessage(player, "&9[Contract]&5|&aCanceled: &e"+new SimpleDateFormat("HH:mm MM/dd/yyyy").format(contract.closed_at));
 								} else {
 									MessageM.sendMessage(player, "&9[Contract]&5|&aCanceled: &e");
 								}
@@ -106,7 +106,7 @@ public class CMDview extends DefaultCMD {
 							if(contract.reported == true) {
 								MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
 								if(contract.due != null) {
-								MessageM.sendMessage(player, "&9[Contract]&5|&aReported: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.report_at));
+								MessageM.sendMessage(player, "&9[Contract]&5|&aReported: &e"+new SimpleDateFormat("HH:mm MM/dd/yyyy").format(contract.report_at));
 								} else {
 									MessageM.sendMessage(player, "&9[Contract]&5|&aReported: &e");
 								}
@@ -115,7 +115,7 @@ public class CMDview extends DefaultCMD {
 							if(contract.closed == true && contract.status != 2) {
 								MessageM.sendMessage(player, "&9[Contract]&5+---------------------------------------------------+");
 								if(contract.due != null) {
-								MessageM.sendMessage(player, "&9[Contract]&5|&aClosed: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.closed_at));
+								MessageM.sendMessage(player, "&9[Contract]&5|&aClosed: &e"+new SimpleDateFormat("HH:mm MM/dd/yyyy").format(contract.closed_at));
 								} else {
 									MessageM.sendMessage(player, "&9[Contract]&5|&aClosed: &e");
 								}

@@ -129,7 +129,7 @@ public class ContractHandler {
 		if(contract.type.equals(1)) {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aType: &eService");
 		} else if(contract.type.equals(2)) {
-			MessageM.sendMessage(player, "&9[Contract]&5|&aType: &eBorrowing");
+			MessageM.sendMessage(player, "&9[Contract]&5|&aType: &eBorrow");
 		} else if(contract.type.equals(3)) {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aType: &ePromise");
 		}
@@ -137,7 +137,7 @@ public class ContractHandler {
 		MessageM.sendMessage(player, "&9[Contract]&5|&aPartner: &e"+contract.partner);
 		MessageM.sendMessage(player, "&9[Contract]&5|&aInsurance: &e"+contract.insurance);
 		if(contract.due != null) {
-		MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.due));
+		MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e"+new SimpleDateFormat("HH:mm MM/dd/yyyy").format(contract.due));
 		} else {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aDue to: &e");
 		}
@@ -169,14 +169,14 @@ public class ContractHandler {
 			if(contract.type == 1) {
 				MessageM.sendMessage(partner, "&9[Contract]&5|&aType: &eService");
 			} else if(contract.type == 2) {
-				MessageM.sendMessage(partner, "&9[Contract]&5|&aType: &eBorrowing");
+				MessageM.sendMessage(partner, "&9[Contract]&5|&aType: &eBorrow");
 			} else if(contract.type == 3) {
 				MessageM.sendMessage(partner, "&9[Contract]&5|&aType: &ePromise");
 			}
 			MessageM.sendMessage(partner, "&9[Contract]&5|&aPartner: &e"+contract.owner);
 			MessageM.sendMessage(partner, "&9[Contract]&5|&aInsurance: &e"+contract.insurance);
 			if(contract.due != null) {
-				MessageM.sendMessage(partner, "&9[Contract]&5|&aDue to: &e"+new SimpleDateFormat("hh:mm MM/dd/yyyy").format(contract.due));
+				MessageM.sendMessage(partner, "&9[Contract]&5|&aDue to: &e"+new SimpleDateFormat("HH:mm MM/dd/yyyy").format(contract.due));
 			} else {
 				MessageM.sendMessage(partner, "&9[Contract]&5|&aDue to: &e");
 			}
@@ -276,7 +276,7 @@ public class ContractHandler {
 			if(contract.reward_type.equalsIgnoreCase("BYTES")) {
 				try {
 					if(Economy.hasMore(player.getName(), Double.parseDouble(contract.reward))) {
-						Economy.divide(player.getName(), Double.parseDouble(contract.reward));
+						Economy.subtract(player.getName(), Double.parseDouble(contract.reward));
 						Economy.add(partner.getName(), Double.parseDouble(contract.reward));
 						MessageM.sendMessage(player, "&9[Contract]&eContract "+contract.id+": &2"+contract.subject+" successfull!");
 						MessageM.sendMessage(player, "&9[Contract]&2"+contract.reward+" Bytes withdrawed.");
@@ -374,6 +374,8 @@ public class ContractHandler {
 					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&c[RFO]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 				} else if(contract.status.equals(7)) {
 					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&c[RFP]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
+				} else if(contract.status.equals(0)) {
+					MessageM.sendMessage(player, "&9[Contract]#"+contract.id+"&f[Created]&5&e"+contract.owner+" &a->&e "+contract.partner+": &f"+contract.subject);
 				}
 			}
 		}

@@ -25,7 +25,7 @@ public class CMDcreate extends DefaultCMD {
 			MessageM.sendMessage(player, "&9[Contract]&5|&aContract "+contract.id+" Settings");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aSubject: &e /contract set "+contract.id+" subject <value>");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aPartner: &e /contract set "+contract.id+" partner <value>");
-			MessageM.sendMessage(player, "&9[Contract]&5|&aDue: &e /contract set "+contract.id+" due <hh:mm mm/dd/yyyy>");
+			MessageM.sendMessage(player, "&9[Contract]&5|&aDue: &e /contract set "+contract.id+" due <HH:mm mm/dd/yyyy>");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aType: &e /contract set "+contract.id+" type <service|borrow|promise>");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aInsurance: &e /contract set "+contract.id+" insurance <value>");
 			MessageM.sendMessage(player, "&9[Contract]&5|&aReward(Bytes): &e /contract set "+contract.id+" reward b:<amount> ");
